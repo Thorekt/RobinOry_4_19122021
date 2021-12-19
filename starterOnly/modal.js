@@ -29,3 +29,4 @@ function closeModal() {
 }
 
 
+console.log(formData);
