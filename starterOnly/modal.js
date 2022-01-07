@@ -56,10 +56,12 @@ function isValidInput(input) {
   if ((input.id == "first" || input.id == "last") && input.value.length < 2) {
     return false;
   }
+  if (input.id == "birthdate" && (!stringIsValidBirthDate(input.value) || input.value.length == 0 )){
+    return false;
+  }
   if (input.id == "quantity" && input.value.match(/^[0-9]+$/) == null) {
     return false;
   }
-
   if (input.id == "email" && (!stringIsMail(input.value) && input.value.length == 0 )){
     return false;
   }
@@ -69,6 +71,14 @@ function isValidInput(input) {
 
 
 
+  return true;
+}
+
+function stringIsValidBirthDate(date){
+  let today = new Date();
+  if (today < Date.parse(date)){
+    return false;
+  }
   return true;
 }
 
