@@ -56,7 +56,7 @@ function validate() {
 }
 
 function isValidInput(input) {
-  if ((input.id == "first" || input.id == "last") && input.value.length < 2) {
+  if ((input.id == "first" || input.id == "last") && input.value.length < input.minLength) {
     displayErrorMessage(input.id);
     return false;
   }else if (input.id == "first" || input.id == "last"){
