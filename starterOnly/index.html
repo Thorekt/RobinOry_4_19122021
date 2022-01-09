@@ -72,6 +72,7 @@
                   name="first"
                   minlength="2"
                 /><br>
+                <span id="firstMessage" class="message" hidden>Le prénom doit avoir une longueur minimum de 2 lettres</span>
               </div>
               <div
                 class="formData">
@@ -82,6 +83,7 @@
                   id="last"
                   name="last"
                 /><br>
+                <span id="lastMessage" class="message" hidden>Le nom doit avoir une longueur minimum de 2 lettres</span>
               </div>
               <div
                 class="formData">
@@ -92,6 +94,7 @@
                   id="email"
                   name="email"
                 /><br>
+                <span id="emailMessage" class="message" hidden>Le format entré ne correspond pas à un email</span>
               </div>
               <div
                 class="formData">
@@ -102,11 +105,13 @@
                   id="birthdate"
                   name="birthdate"
                 /><br>
+                <span id="birthdateMessage" class="message" hidden>La date est invalide</span>
               </div>
               <div
                 class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <span id="quantityMessage" class="message" hidden>Ce champ accepte que les chiffres</span>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
@@ -177,6 +182,8 @@
                   <span class="checkbox-icon"  ></span>
                   Portland</label
                 >
+                
+                <span id="locationMessage" class="message" hidden><br>Une ville minimum doit etre coché.</span>
               </div>
 
               <div
@@ -191,6 +198,8 @@
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
+               
+                <span id="checkbox1Message" class="message" hidden> <br>Les conditions d'utilisation doivent etre accepté.</span>
                 <br>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
