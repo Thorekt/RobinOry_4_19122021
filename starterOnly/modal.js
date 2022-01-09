@@ -18,6 +18,17 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
 close.forEach((span) => span.addEventListener("click", closeModal));
 
+
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
+let confirmation = urlParams.get('confirmation');
+console.log(queryString);
+console.log(urlParams);
+console.log(confirmation);
+if (confirmation=1){
+  displayFormConfirmation();
+}
+
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
@@ -32,8 +43,8 @@ function closeModal() {
 function validate() {
   let isFormValid = true;
   let locationCheckboxs = [];
-  formData.forEach(element => {
-    element.querySelectorAll("input").forEach(input => {
+  formData.forEach((element) => {
+    element.querySelectorAll("input").forEach((input) => {
       if (input.name != "location") {
         let isValid = isValidInput(input);
         if (!isValid) {
@@ -45,87 +56,101 @@ function validate() {
     });
   });
 
-  if (!isOneLocationChecked(locationCheckboxs)){
+  if (!isOneLocationChecked(locationCheckboxs)) {
     isFormValid = false;
     displayErrorMessage("location");
-  }else{
+  } else {
     hideErrorMessage("location");
   }
-
   return isFormValid;
 }
 
 function isValidInput(input) {
-  if ((input.id == "first" || input.id == "last") && input.value.length < input.minLength) {
+  if (
+    (input.id == "first" || input.id == "last") &&
+    input.value.length < input.minLength
+  ) {
     displayErrorMessage(input.id);
     return false;
-  }else if (input.id == "first" || input.id == "last"){
+  } else if (input.id == "first" || input.id == "last") {
     hideErrorMessage(input.id);
   }
-  if (input.id == "birthdate" && (!stringIsValidBirthDate(input.value) || input.value.length == 0 )){
+  if (
+    input.id == "birthdate" &&
+    (!stringIsValidBirthDate(input.value) || input.value.length == 0)
+  ) {
     displayErrorMessage(input.id);
     return false;
-  }else  if (input.id == "birthdate"){
+  } else if (input.id == "birthdate") {
     hideErrorMessage(input.id);
   }
   if (input.id == "quantity" && input.value.match(/^[0-9]+$/) == null) {
     displayErrorMessage(input.id);
     return false;
-  }else if (input.id == "quantity"){
+  } else if (input.id == "quantity") {
     hideErrorMessage(input.id);
   }
-  if (input.id == "email" && (!stringIsMail(input.value) && input.value.length == 0 )){
+  if (
+    input.id == "email" &&
+    !stringIsMail(input.value) &&
+    input.value.length == 0
+  ) {
     displayErrorMessage(input.id);
     return false;
-  }else if (input.id == "email" ){
+  } else if (input.id == "email") {
     hideErrorMessage(input.id);
   }
   if (input.id == "checkbox1" && input.checked == false) {
     displayErrorMessage(input.id);
     return false;
-  }else  if (input.id == "checkbox1"){
+  } else if (input.id == "checkbox1") {
     hideErrorMessage(input.id);
   }
   return true;
 }
 
-function displayErrorMessage(name){
-  let idMessage = name+"Message";
+function displayErrorMessage(name) {
+  let idMessage = name + "Message";
   element = document.getElementById(idMessage);
-  if (element.hasAttribute("hidden")){
+  if (element.hasAttribute("hidden")) {
     element.hidden = false;
   }
 }
 
-function  hideErrorMessage(name){
-  let idMessage = name+"Message";
+function hideErrorMessage(name) {
+  let idMessage = name + "Message";
   element = document.getElementById(idMessage);
-  if (!element.hasAttribute("hidden")){
+  if (!element.hasAttribute("hidden")) {
     element.hidden = true;
   }
 }
 
+function displayFormConfirmation(){
+  let element = document.getElementById("confirmation");
+  element.hidden = false;
+  setTimeout(element.hidden = true, 3000);
+}
 
-function stringIsValidBirthDate(date){
+function stringIsValidBirthDate(date) {
   let today = new Date();
-  if (today < Date.parse(date)){
+  if (today < Date.parse(date)) {
     return false;
   }
   return true;
 }
 
-function stringIsMail(string){
+function stringIsMail(string) {
   return string
-  .toLowerCase()
-  .match(
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  );
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
 }
 
-function isOneLocationChecked(locationCheckboxs){
+function isOneLocationChecked(locationCheckboxs) {
   let isOneChecked = false;
-  locationCheckboxs.forEach(checkbox => {
-    if(checkbox.checked){
+  locationCheckboxs.forEach((checkbox) => {
+    if (checkbox.checked) {
       isOneChecked = true;
     }
   });

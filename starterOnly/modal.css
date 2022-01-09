@@ -531,3 +531,15 @@ footer {
   font-size: small;
   color: #e54858;
 }
+
+.confirmation{
+  color: white;
+  background-color: #279e7a;
+  position: absolute;
+  width: auto;
+  right: 5em;
+  top:2em;
+  padding: 0.5em;
+  border-radius: 2em;
+  font-size: small;
+}
