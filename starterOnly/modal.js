@@ -22,10 +22,7 @@ close.forEach((span) => span.addEventListener("click", closeModal));
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let confirmation = urlParams.get('confirmation');
-console.log(queryString);
-console.log(urlParams);
-console.log(confirmation);
-if (confirmation=1){
+if (confirmation==1){
   displayFormConfirmation();
 }
 
@@ -126,9 +123,12 @@ function hideErrorMessage(name) {
 }
 
 function displayFormConfirmation(){
-  let element = document.getElementById("confirmation");
-  element.hidden = false;
-  setTimeout(element.hidden = true, 3000);
+  document.getElementById("confirmationMessage").hidden = false;
+  setTimeout(function() {hideFormConfirmation()}, 3000);
+}
+
+function hideFormConfirmation(){
+  document.getElementById("confirmationMessage").hidden = true;
 }
 
 function stringIsValidBirthDate(date) {

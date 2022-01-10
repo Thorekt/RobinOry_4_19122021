@@ -15,7 +15,7 @@
     />
   </head>
   <body>
-    <div id="confirmation" class="confirmation" hidden>
+    <div id="confirmationMessage" class="confirmation" hidden>
       <span>Le formulaire a bien été envoyé</span>
     </div>
     <div>
@@ -63,6 +63,9 @@
               method="get"
               onsubmit="return validate();"
             >
+            <div class="formData">
+              <input id="confirmation" name="confirmation" value="1" type="hidden"/>
+            </div>
               <div class="formData">
                 <label for="first">Prénom</label><br />
                 <input
