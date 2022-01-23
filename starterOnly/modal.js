@@ -18,12 +18,12 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
 close.forEach((span) => span.addEventListener("click", closeModal));
 
-
+//call the confirmation message when "confirmation" is in GET query
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
-let confirmation = urlParams.get('confirmation');
-if (confirmation==1){
-  displayFormConfirmation();
+let confirmation = urlParams.get("confirmation");
+if (confirmation == 1) {
+  displayFormConfirmationMessage();
 }
 
 // launch modal form
@@ -62,6 +62,7 @@ function validate() {
   return isFormValid;
 }
 
+//check for each fields in form if they meet the requirement
 function isValidInput(input) {
   if (
     (input.id == "first" || input.id == "last") &&
@@ -106,31 +107,7 @@ function isValidInput(input) {
   return true;
 }
 
-function displayErrorMessage(name) {
-  let idMessage = name + "Message";
-  element = document.getElementById(idMessage);
-  if (element.hasAttribute("hidden")) {
-    element.hidden = false;
-  }
-}
-
-function hideErrorMessage(name) {
-  let idMessage = name + "Message";
-  element = document.getElementById(idMessage);
-  if (!element.hasAttribute("hidden")) {
-    element.hidden = true;
-  }
-}
-
-function displayFormConfirmation(){
-  document.getElementById("confirmationMessage").hidden = false;
-  setTimeout(function() {hideFormConfirmation()}, 3000);
-}
-
-function hideFormConfirmation(){
-  document.getElementById("confirmationMessage").hidden = true;
-}
-
+//check if the timestamp in string is a valid date
 function stringIsValidBirthDate(date) {
   let today = new Date();
   if (today < Date.parse(date)) {
@@ -139,6 +116,8 @@ function stringIsValidBirthDate(date) {
   return true;
 }
 
+//take a string
+//check if the string is a mail
 function stringIsMail(string) {
   return string
     .toLowerCase()
@@ -147,6 +126,8 @@ function stringIsMail(string) {
     );
 }
 
+//take an array with all location field in parametter
+//check if atleast one location is checked
 function isOneLocationChecked(locationCheckboxs) {
   let isOneChecked = false;
   locationCheckboxs.forEach((checkbox) => {
@@ -155,4 +136,37 @@ function isOneLocationChecked(locationCheckboxs) {
     }
   });
   return isOneChecked;
+}
+
+//take a string who is a field name in parametter
+//display the error message corresponding to the name
+function displayErrorMessage(name) {
+  let idMessage = name + "Message";
+  element = document.getElementById(idMessage);
+  if (element.hasAttribute("hidden")) {
+    element.hidden = false;
+  }
+}
+
+//take a string who is a field name in parametter
+//hide the error message corresponding to the name
+function hideErrorMessage(name) {
+  let idMessage = name + "Message";
+  element = document.getElementById(idMessage);
+  if (!element.hasAttribute("hidden")) {
+    element.hidden = true;
+  }
+}
+
+//display the form confirmation message and hide it after time
+function displayFormConfirmationMessage() {
+  document.getElementById("confirmationMessage").hidden = false;
+  setTimeout(function () {
+    hideFormConfirmationMessage();
+  }, 3000);
+}
+
+//hide the form confirmation message
+function hideFormConfirmationMessage() {
+  document.getElementById("confirmationMessage").hidden = true;
 }
