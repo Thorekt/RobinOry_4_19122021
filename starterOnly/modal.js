@@ -8,33 +8,49 @@ function editNav() {
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
+const modalForm = document.querySelector(".modal-form");
+const modalConfirm = document.querySelector(".modal-confirm");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const close = document.querySelectorAll(".close");
+const closeForm = document.querySelectorAll(".closeForm");
+const closeConfirmation = document.querySelectorAll(".closeConfirmation");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
-close.forEach((span) => span.addEventListener("click", closeModal));
+closeForm.forEach((span) => span.addEventListener("click", closeModal));
+// close modal confirmation event
+closeConfirmation.forEach((span) => span.addEventListener("click", closeConfirmationModal));
 
 //call the confirmation message when "confirmation" is in GET query
 let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let confirmation = urlParams.get("confirmation");
 if (confirmation == 1) {
-  displayFormConfirmationMessage();
+  launchConfirmationModal();
 }
 
 // launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
+  modalForm.style.display = "block";
 }
 
 // close modal form
 function closeModal() {
-  modalbg.style.display = "none";
+  modalForm.style.display = "none";
 }
+
+
+// launch modal Confirmation
+function launchConfirmationModal() {
+  modalConfirm.style.display = "block";
+}
+
+// close modal Confirmation
+function closeConfirmationModal() {
+  modalConfirm.style.display = "none";
+}
+
 
 // check if form is valid
 function validate() {
@@ -156,17 +172,4 @@ function hideErrorMessage(name) {
   if (!element.hasAttribute("hidden")) {
     element.hidden = true;
   }
-}
-
-//display the form confirmation message and hide it after time
-function displayFormConfirmationMessage() {
-  document.getElementById("confirmationMessage").hidden = false;
-  setTimeout(function () {
-    hideFormConfirmationMessage();
-  }, 3000);
-}
-
-//hide the form confirmation message
-function hideFormConfirmationMessage() {
-  document.getElementById("confirmationMessage").hidden = true;
 }
