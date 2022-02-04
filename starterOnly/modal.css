@@ -498,7 +498,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 800px) {
   body {
     margin-left: 0.5em;
     margin-right: 0.5em;
@@ -654,5 +654,8 @@ footer {
     margin-top: 1em;
     text-align: center;
     font-size: 0.7rem;
+  }
+  .content {
+    min-width: 100vw;
   }
 }
