@@ -498,7 +498,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   body {
     margin-left: 0.5em;
     margin-right: 0.5em;
