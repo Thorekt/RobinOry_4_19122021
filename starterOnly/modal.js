@@ -156,20 +156,20 @@ function isOneLocationChecked(locationCheckboxs) {
   return isOneChecked;
 }
 
-//take a string who is a field name in parametter
-//display the error message corresponding to the name
-function displayErrorMessage(name) {
-  let idMessage = name + "Message";
+//take a string who is a field id in parametter
+//display the error message corresponding to the id
+function displayErrorMessage(idInput) {
+  let idMessage = idInput + "Message";
   element = document.getElementById(idMessage);
   if (element.hasAttribute("hidden")) {
     element.hidden = false;
   }
 }
 
-//take a string who is a field name in parametter
-//hide the error message corresponding to the name
-function hideErrorMessage(name) {
-  let idMessage = name + "Message";
+//take a string who is a field id in parametter
+//hide the error message corresponding to the id
+function hideErrorMessage(idInput) {
+  let idMessage = idInput + "Message";
   element = document.getElementById(idMessage);
   if (!element.hasAttribute("hidden")) {
     element.hidden = true;
