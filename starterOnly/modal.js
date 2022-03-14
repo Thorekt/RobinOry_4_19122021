@@ -20,7 +20,9 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
 closeForm.forEach((span) => span.addEventListener("click", closeModal));
 // close modal confirmation event
-closeConfirmation.forEach((span) => span.addEventListener("click", closeConfirmationModal));
+closeConfirmation.forEach((span) =>
+  span.addEventListener("click", closeConfirmationModal)
+);
 
 //call the confirmation message when "confirmation" is in GET query
 let queryString = window.location.search;
@@ -40,7 +42,6 @@ function closeModal() {
   modalForm.style.display = "none";
 }
 
-
 // launch modal Confirmation
 function launchConfirmationModal() {
   modalConfirm.style.display = "block";
@@ -51,7 +52,6 @@ function closeConfirmationModal() {
   modalConfirm.style.display = "none";
 }
 
-
 // check if form is valid
 function validate() {
   let isFormValid = true;
@@ -59,6 +59,7 @@ function validate() {
   formData.forEach((element) => {
     element.querySelectorAll("input").forEach((input) => {
       if (input.name != "location") {
+        //check all input, avoiding location input
         let isValid = isValidInput(input);
         if (!isValid) {
           isFormValid = false;
@@ -68,7 +69,7 @@ function validate() {
       }
     });
   });
-
+//check location input
   if (!isOneLocationChecked(locationCheckboxs)) {
     isFormValid = false;
     displayErrorMessage("location");
@@ -78,7 +79,7 @@ function validate() {
   return isFormValid;
 }
 
-//check for each fields in form if they meet the requirement
+//check for each fields in form if they meet the requirement, don't check
 function isValidInput(input) {
   if (
     (input.id == "first" || input.id == "last") &&
@@ -89,6 +90,7 @@ function isValidInput(input) {
   } else if (input.id == "first" || input.id == "last") {
     hideErrorMessage(input.id);
   }
+
   if (
     input.id == "birthdate" &&
     (!stringIsValidBirthDate(input.value) || input.value.length == 0)

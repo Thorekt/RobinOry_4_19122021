@@ -155,6 +155,10 @@ main {
   padding-top: 10px;
   text-align: start;
 }
+.content form{
+  overflow-y:scroll;
+  max-height: 35em;
+}
 
 .modal-body {
   padding: 15px 8%;
@@ -487,6 +491,13 @@ footer {
   border-radius: 2em;
   font-size: small;
 }
+
+/* width */
+::-webkit-scrollbar {
+  display: none;
+}
+
+
 
 @keyframes modalopen {
   from {
