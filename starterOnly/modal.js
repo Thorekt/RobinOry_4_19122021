@@ -69,7 +69,7 @@ function validate() {
       }
     });
   });
-//check location input
+  //check location input
   if (!isOneLocationChecked(locationCheckboxs)) {
     isFormValid = false;
     displayErrorMessage("location");
@@ -81,10 +81,9 @@ function validate() {
 
 //check for each fields in form if they meet the requirement, don't check
 function isValidInput(input) {
-  if (
-    (input.id == "first" || input.id == "last") &&
-    input.value.length < input.minLength
-  ) {
+  if ((input.id == "first" || input.id == "last") &&
+      (input.value.trim().length < input.minLength ||
+    !stringIsValidName(input.value))) {
     displayErrorMessage(input.id);
     return false;
   } else if (input.id == "first" || input.id == "last") {
@@ -123,6 +122,11 @@ function isValidInput(input) {
     hideErrorMessage(input.id);
   }
   return true;
+}
+
+function stringIsValidName(string) {
+  return string
+    .match(/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u);
 }
 
 //check if the timestamp in string is a valid date
